@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Compras Oficial | Os Melhores Produtos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        }
+
+        :root {
+            --dourado: #ffc107;
+            --dourado-escuro: #e0a800;
+            --preto: #111111;
+            --cinza: #f8f8f8;
+            --texto: #222222;
+            --texto-claro: #777777;
+            --borda: #eeeeee;
+            --sombra: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        body {
+            background: #ffffff;
+            color: var(--texto);
+            line-height: 1.5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #111, #333);
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        header h1 span {
+            color: var(--dourado);
+        }
+
+        header p {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        .aviso {
+            background: var(--dourado);
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--preto);
+            font-weight: 500;
+        }
+
+        .aviso code {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        nav {
+            background: #fff;
+            border-bottom: 1px solid var(--borda);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .nav-lista {
+            list-style: none;
+            display: flex;
+            overflow-x: auto;
+            gap: 4px;
+            padding: 12px 15px;
+            scrollbar-width: none;
+        }
+
+        .nav-lista::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-lista a {
+            padding: 8px 16px;
+            color: var(--texto);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 20px;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+
+        .nav-lista a:hover {
+            background: var(--dourado);
+            color: var(--preto);
+        }
+
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .categoria {
+            margin-bottom: 60px;
+        }
+
+        .titulo-categoria {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--preto);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--dourado);
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .grade {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .produto {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            border: 1px solid var(--borda);
+            transition: all 0.3s ease;
+        }
+
+        .produto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .produto-img {
+            width: 100%;
+            height: 180px;
+            background: var(--cinza);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #ccc;
+            overflow: hidden;
+        }
+
+        .produto-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .produto-corpo {
+            padding: 18px;
+        }
+
+        .produto-nome {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--texto);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .preco {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--preto);
+            margin-bottom: 4px;
+        }
+
+        .preco small {
+            font-size: 0.8rem;
+            color: var(--texto-claro);
+            font-weight: 400;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 11px;
+            background: var(--dourado);
+            color: var(--preto);
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: var(--dourado-escuro);
+        }
+
+        footer {
+            background: var(--preto);
+            color: #888;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Minhas <span>Compras</span> Oficial</h1>
+        <p>OS MELHORES PRODUTOS COM O MELHOR PREÇO</p>
+    </header>
+
+    <div class="aviso">
+        📸 Foto: Troque <code>sua-imagem.jpg</code> | 🔗 Link: Troque <code>#SEU-LINK-AQUI</code> | 💰 Preço: Edite direto no valor
+    </div>
+
+    <nav>
+        <ul class="nav-lista">
+            <li><a href="#tech">📱 Tech</a></li>
+            <li><a href="#pets">🐾 Pets</a></li>
+            <li><a href="#moda">👕 Moda</a></li>
+            <li><a href="#cozinha">🍳 Cozinha</a></li>
+            <li><a href="#games">🎮 Games</a></li>
+            <li><a href="#decor">🖼️ Decoração</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- ====================================== -->
+        <!-- TECNOLOGIA -->
+        <!-- ====================================== -->
+        <section id="tech" class="categoria">
+            <h2 class="titulo-categoria">📱 Celulares e Tecnologia</h2>
+            <div class="grade">
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Capinha para celular"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Capinhas para Celular — Várias Cores e Modelos</h3>
+                        <p class="preco">R$ 29,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Película"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Películas de Vidro Temperado — Ultra Resistente</h3>
+                        <p class="preco">R$ 19,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Cabo USB"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Cabos USB Reforçados — Carregamento Rápido</h3>
+                        <p class="preco">R$ 24,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Carregador"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Carregadores Rápidos — Alta Potência</h3>
+                        <p class="preco">R$ 49,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Fone Bluetooth"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Fones Bluetooth Sem Fio — Som de Qualidade</h3>
+                        <p class="preco">R$ 89,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================== -->
+        <!-- PETS -->
+        <!-- ====================================== -->
+        <section id="pets" class="categoria">
+            <h2 class="titulo-categoria">🐾 Produtos para Pets</h2>
+            <div class="grade">
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Tapete higiênico"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Tapetes Higiênicos — Absorventes e Antivazamento</h3>
+                        <p class="preco">R$ 39,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Brinquedo para cão"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Brinquedos para Cães — Resistentes e Divertidos</h3>
+                        <p class="preco">R$ 25,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Coleira"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Coleiras Ajustáveis — Conforto e Segurança</h3>
+                        <p class="preco">R$ 22,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Comedouro"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Comedouros — Estáveis e Fáceis de Limpar</h3>
+                        <p class="preco">R$ 18,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Escova para pelos"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Escovas para Pelos — Remoção Fácil e Suave</h3>
+                        <p class="preco">R$ 32,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================== -->
+        <!-- MODA -->
+        <!-- ====================================== -->
+        <section id="moda" class="categoria">
+            <h2 class="titulo-categoria">👕 Roupas e Acessórios</h2>
+            <div class="grade">
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Camiseta básica"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Camisetas Básicas — 100% Algodão, Várias Cores</h3>
+                        <p class="preco">R$ 49,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Boné"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Bonés — Ajustáveis, Estilosos e Confortáveis</h3>
+                        <p class="preco">R$ 39,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Meias"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Meias — Kit com Diversos Modelos e Cores</h3>
+                        <p class="preco">R$ 24,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Carteira"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Carteiras — Resistentes, Elegantes e Funcionais</h3>
+                        <p class="preco">R$ 59,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Mochila"></div>
+                    <div class="produto-corpo">
+                        <h3 class="produto-nome">Mochilas — Espaçosas, Resistentes e Modernas</h3>
+                        <p class="preco">R$ 89,90 <small>à vista</small></p>
+                        <a href="#SEU-LINK-AQUI" class="btn">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================== -->
+        <!-- COZINHA -->
+        <!-- ====================================== -->
+        <section id="cozinha" class="categoria">
+            <h2 class="titulo-categoria">🍳 Cozinha</h2>
+            <div class="grade">
+                <div class="produto">
+                    <div class="produto-img"><img src="sua-imagem.jpg" alt="Potes para mantimentos"></div>
+                    <div class="produto-cor
